@@ -1,0 +1,179 @@
+@use '../../styles/root.sass' as root
+@use '../../styles/animations.sass' as animate
+
+$logo-no-bg-url: url("../../assets/logo/png/logo-no-background.png")
+$opacity-transition: opacity .3s ease-in-out
+
+@mixin hover-and-active
+    cursor: pointer
+    transition: $opacity-transition
+    opacity: 0.4
+
+.nav
+    position: relative
+    background-color: root.$bg-header
+    width: 100vw
+    height: 8vh
+    @include root.center-content
+    animation: fade-in, drop-down 1.5s
+
+.nav-container
+    max-width: 1040px
+    min-width: 800px
+    width: 50%
+    height: inherit
+    @include root.center-content
+    flex-direction: row
+
+.nav-items-container
+    width: 60%
+    display: flex
+    transition: $opacity-transition
+
+.nav-items
+    width: 100%
+    display: flex
+    justify-content: flex-end
+
+a
+    all: unset
+
+ul, li
+    color: root.$light-primary
+    width: auto
+    margin: auto
+    text-decoration: none
+    display: inline
+    font-size: 18px
+    font-weight: 400
+
+.nav-item
+    @include root.center-content
+
+    &:not(.social-container)
+        flex: 1
+
+    &:hover:not(.social-container), .active
+        span
+            @include hover-and-active
+
+.social-container
+    margin-left: 2em
+    flex: 2
+
+.social
+    width: 100%
+    display: flex
+    flex-direction: row
+    padding: 0
+
+    li
+        cursor: pointer
+        &:hover
+            @include hover-and-active
+
+.logo-container
+    width: 40%
+    height: inherit
+    display: flex
+    flex-shrink: 0
+    justify-content: flex-start
+    align-items: center
+    transition: $opacity-transition
+
+.logo
+    width: 50%
+    height: 90%
+    background-image: $logo-no-bg-url
+    background-repeat: no-repeat
+    background-position: center
+    background-size: contain
+    cursor: pointer
+
+    &:hover
+        @include hover-and-active
+
+.bars-menu
+    cursor: pointer
+    position: absolute
+    right: 2em
+    opacity: 0
+    color: root.$light-primary
+
+.bar-menu-modal-container
+    position: fixed
+    right: 0
+    height: auto
+    width: fit-content
+    background-color: root.$dark-tertiary
+    box-shadow: 0 0 3px 0 root.$dark-secondary
+    animation: drop-down .3s ease-in-out
+
+    .bar-modal-items
+        @include root.center-content
+        flex-direction: column
+        padding: 0
+
+    .nav-item
+        color: root.$dark-secondary
+        font-size: 1.1em
+        width: 100%
+
+        > .route
+            padding: 5px 3em
+            width: 100%
+            text-align: center
+
+        .active
+            color: root.$dark-primary
+            background-color: root.$light-tertiary
+            opacity: 1
+
+    .bar-modal-social
+        display: flex
+        padding: 0
+        cursor: pointer
+
+        .icon
+            padding: 10px 0.5em
+
+            &:hover
+                @include hover-and-active
+
+@media only screen and (max-width: 830px)
+    .bars-menu
+        opacity: 1
+        cursor: pointer
+        float: right
+        transition: $opacity-transition, right .3s ease-in-out
+
+    .nav-container
+        width: 100%
+        justify-content: space-between
+        min-width: 0
+
+    .nav-items-container
+        opacity: 0
+
+        .nav-item
+            pointer-events: none
+
+    .logo-container
+        width: 18em
+
+@media only screen and (max-width: 240px)
+    .bars-menu
+        right: 50%
+        margin: 0
+        transform: translateX(50%)
+
+    .logo-container
+        opacity: 0
+
+@media only screen and (min-width: 830px)
+    .bars-menu
+        opacity: 0
+
+    .bar-menu-modal-container
+        display: none
+        background: red
