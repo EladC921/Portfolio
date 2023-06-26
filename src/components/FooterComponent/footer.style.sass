@@ -1,0 +1,15 @@
+@use '../../styles/root.sass' as root
+
+.footer
+    @include root.center-content
+    color: root.$dark-tertiary
+    position: fixed
+    top: 90vh
+    height: 10vh
+    width: 100%
+    background-color: root.$light-tertiary
+    z-index: -1
+    box-shadow: root.$shadow-seperation
+
+    span
+        width: 80%

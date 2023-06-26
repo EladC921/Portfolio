@@ -1,23 +1,46 @@
 @use '../../styles/root.sass' as root
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower')
+@import url('https://fonts.googleapis.com/css?family=Orbitron')
+@import url('https://fonts.googleapis.com/css?family=Diphylleia')
 
-.wrapper
+.top-container
     @include root.center-content
-    height: 52vh
+    height: 42vh
     box-shadow: root.$shadow-seperation
     color: root.$dark-primary
     flex-direction: column
 
 .header
-    text-align: center
+    @include root.center-content
+    flex-direction: column
     width: 100%
     height: 50%
+    h1
+        font-family: Orbitron
+        font-size: 2em
+    h2
+        font-family: Indie Flower
+        font-size: 2em
+    h3
+        font-family: Diphylleia
+        font-size: 1.6em
 
 .profile-pic
+    position: absolute
     width: 80%
-    height: 50%
+    height: calc(42vh - 4px)
     display: flex
     align-items: flex-end
     justify-content: flex-end
 
     img
-        width: 20%
+        width: 20rem
+        filter: grayscale(100%) brightness(130%)
+
+.bottom-container
+    @include root.center-content
+    height: 40vh
+    background-color: root.$light-secondary
+    box-shadow: root.$shadow-seperation
+    color: root.$dark-secondary
+    flex-direction: column
